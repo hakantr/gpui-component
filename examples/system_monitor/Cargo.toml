@@ -11,7 +11,7 @@ gpui.workspace = true
 gpui_platform.workspace = true
 gpui-component-assets.workspace = true
 gpui-component.workspace = true
-sysinfo = "0.37"
+sysinfo = "0.38.4"
 smol = "2"
 battery = "0.7"
 

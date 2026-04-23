@@ -11,6 +11,7 @@ use gpui::{
     StatefulInteractiveElement, Styled, Subscription, Task, TextAlign, Window, div,
     prelude::FluentBuilder as _,
 };
+use rand::Rng as _;
 use gpui_component::{
     ActiveTheme as _, Selectable, Sizable as _, Size, StyleSized as _, StyledExt,
     button::Button,
@@ -50,7 +51,7 @@ static INCREMENT_ID: LazyLock<std::sync::Mutex<usize>> = LazyLock::new(|| std::s
 impl Counter {
     fn random() -> Self {
         let len = ALL_COUNTERS.len();
-        let ix = rand::random::<usize>() % len;
+        let ix = rand::rng().random_range(0..len);
         ALL_COUNTERS[ix].clone()
     }
 

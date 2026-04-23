@@ -49,7 +49,7 @@ reqwest = { git = "https://github.com/zed-industries/reqwest.git", rev = "c15662
 anyhow = "1"
 log = "0.4"
 lsp-types = { version = "0.97.0", features = ["proposed"] }
-notify = "7.0.0"
+notify = "8.2.0"
 raw-window-handle = "0.6.2"
 ropey = { version = "=2.0.0-beta.1", features = [
     "metric_lines_lf",
@@ -57,19 +57,19 @@ ropey = { version = "=2.0.0-beta.1", features = [
 ] }
 rust-i18n = "4"
 schemars = "1"
-serde = { version = "1.0.219", features = ["derive"] }
+serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1"
 serde_repr = "0.1"
 smallvec = "1"
 smol = "2"
-tracing = "0.1.41"
-wasm-bindgen = "0.2.113"
+tracing = "0.1.44"
+wasm-bindgen = "0.2.118"
 # Use errno stub for WASM
 errno = { version = "0.3.14", default-features = false }
 
 [workspace.dependencies.windows]
 features = ["Wdk", "Wdk_System", "Wdk_System_SystemServices"]
-version = "0.58.0"
+version = "0.62.2"
 
 [workspace.lints.clippy]
 almost_complete_range = "allow"

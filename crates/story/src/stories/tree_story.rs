@@ -16,7 +16,7 @@ use gpui_component::{
     tree::{TreeItem, TreeState, tree},
     v_flex,
 };
-use rand::seq::SliceRandom as _;
+use rand::prelude::IndexedRandom as _;
 
 use crate::{Story, section};
 
@@ -139,7 +139,8 @@ impl Render for TreeStory {
                         .outline()
                         .label("Select Item")
                         .on_click(cx.listener(|this, _, _, cx| {
-                            if let Some(random_item) = this.items.choose(&mut rand::thread_rng()) {
+                            let mut rng = rand::rng();
+                            if let Some(random_item) = this.items.choose(&mut rng) {
                                 this.tree_state.update(cx, |state, cx| {
                                     state.set_selected_item(Some(random_item), cx);
                                 });

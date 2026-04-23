@@ -6,6 +6,7 @@ use gpui_component::{
     v_flex,
 };
 use gpui_component_assets::Assets;
+use rand::Rng as _;
 
 pub struct Example {
     markdown_state: Entity<TextViewState>,
@@ -65,7 +66,7 @@ impl Example {
         self._update_task = cx.background_executor().spawn(async move {
             let chars: Vec<char> = EXAMPLE.chars().collect();
             while current < chars.len() {
-                let chunk_size = (5 + rand::random::<usize>() % 15).min(chars.len() - current);
+                let chunk_size = (5 + rand::rng().random_range(0..15)).min(chars.len() - current);
                 let chunk: String = chars[current..current + chunk_size].iter().collect();
                 _ = tx.try_send(chunk);
                 current += chunk_size;

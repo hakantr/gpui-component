@@ -14,6 +14,7 @@ use gpui_component_story::{
     PopoverStory, ProgressStory, ResizableStory, ScrollbarStory, SelectStory, SidebarStory,
     StoryContainer, SwitchStory, TooltipStory,
 };
+use rand::Rng as _;
 use serde::Deserialize;
 use std::{sync::Arc, time::Duration};
 
@@ -424,7 +425,7 @@ impl StoryWorkspace {
         cx: &mut Context<Self>,
     ) {
         // Random pick up a panel to add
-        let panel = match rand::random::<usize>() % 18 {
+        let panel = match rand::rng().random_range(0..18) {
             0 => Arc::new(StoryContainer::panel::<ButtonStory>(window, cx)),
             1 => Arc::new(StoryContainer::panel::<InputStory>(window, cx)),
             2 => Arc::new(StoryContainer::panel::<SelectStory>(window, cx)),
