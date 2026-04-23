@@ -50,6 +50,8 @@ pub struct Sidebar<E: SidebarItem + 'static> {
     side: Side,
     collapsible: bool,
     collapsed: bool,
+    ust_bosluk: Pixels,
+    alt_bosluk: Pixels,
 }
 
 impl<E: SidebarItem> Sidebar<E> {
@@ -64,12 +66,23 @@ impl<E: SidebarItem> Sidebar<E> {
             side: Side::Left,
             collapsible: true,
             collapsed: false,
+            ust_bosluk: px(0.0),
+            alt_bosluk: px(0.0),
         }
     }
 
     /// Set the side of the sidebar.
     ///
     /// Default is `Side::Left`.
+    pub fn ust_bosluk(mut self, ust_bosluk: Pixels) -> Self {
+        self.ust_bosluk = ust_bosluk;
+        self
+    }
+
+    pub fn alt_bosluk(mut self, alt_bosluk: Pixels) -> Self {
+        self.alt_bosluk = alt_bosluk;
+        self
+    }
     pub fn side(mut self, side: Side) -> Self {
         self.side = side;
         self
@@ -218,6 +231,8 @@ impl<E: SidebarItem> RenderOnce for Sidebar<E> {
         let sidebar = v_flex()
             .id(id.clone())
             .flex_shrink_0()
+            .pt(self.ust_bosluk)
+            .pb(self.alt_bosluk)
             .h_full()
             .overflow_hidden()
             .relative()
