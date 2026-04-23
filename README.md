@@ -31,8 +31,8 @@ Here is the first application: [Longbridge Pro](https://longbridge.com/desktop),
 ## Usage
 
 ```toml
-gpui = { git = "https://github.com/zed-industries/zed" }
-gpui_platform = { git = "https://github.com/zed-industries/zed", features = ["font-kit"] }
+gpui = { git = "https://github.com/zed-industries/zed", rev = "e4e656fb42a01cd8db7aea53c48ae0f38377db57" }
+gpui_platform = { git = "https://github.com/zed-industries/zed", rev = "e4e656fb42a01cd8db7aea53c48ae0f38377db57" }
 gpui-component = { git = "https://github.com/longbridge/gpui-component" }
 ```
 

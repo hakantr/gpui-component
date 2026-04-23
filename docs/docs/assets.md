@@ -19,6 +19,8 @@ To use the default bundled assets, you need to add the `gpui-component-assets` c
 
 ```toml
 [dependencies]
+gpui = { git = "https://github.com/zed-industries/zed", rev = "e4e656fb42a01cd8db7aea53c48ae0f38377db57" }
+gpui_platform = { git = "https://github.com/zed-industries/zed", rev = "e4e656fb42a01cd8db7aea53c48ae0f38377db57" }
 gpui-component = { git = "https://github.com/longbridge/gpui-component" }
 gpui-component-assets = { git = "https://github.com/longbridge/gpui-component" }
 ```

@@ -12,7 +12,7 @@ struct ColorMixDemo {
 }
 
 impl ColorMixDemo {
-    fn new(cx: &mut WindowContext) -> Self {
+    fn new(_: &mut Window, cx: &mut Context<Self>) -> Self {
         Self {
             focus_handle: cx.focus_handle(),
         }
@@ -20,7 +20,7 @@ impl ColorMixDemo {
 }
 
 impl Render for ColorMixDemo {
-    fn render(&mut self, cx: &mut ViewContext<Self>) -> impl IntoElement {
+    fn render(&mut self, _: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         let destructive = cx.theme().destructive;
         let transparent = hsla(0.0, 0.0, 0.0, 0.0);
 
@@ -148,27 +148,28 @@ impl Render for ColorMixDemo {
 fn main() {
     env_logger::init();
 
-    Application::new().run(move |cx| {
+    gpui_platform::application().run(move |cx| {
         gpui_component::init(cx);
 
         cx.activate(true);
-        cx.on_action(|_: &Quit, cx: &mut AppContext| {
+        cx.on_action(|_: &Quit, cx: &mut App| {
             cx.quit();
         });
-        cx.bind_keys([KeyBinding::new("cmd-q", Quit, None)]);
+        cx.bind_keys([
+            #[cfg(target_os = "macos")]
+            KeyBinding::new("cmd-q", Quit, None),
+            #[cfg(not(target_os = "macos"))]
+            KeyBinding::new("alt-f4", Quit, None),
+        ]);
 
-        cx.spawn(|cx| async move {
+        cx.spawn(async move |cx| {
             cx.open_window(
                 WindowOptions {
-                    window_bounds: Some(WindowBounds::Windowed(Bounds::centered(
-                        None,
-                        size(px(600.), px(400.)),
-                        cx,
-                    ))),
+                    window_bounds: Some(WindowBounds::centered(size(px(600.), px(400.)), cx)),
                     ..Default::default()
                 },
                 |window, cx| {
-                    let view = cx.new(|cx| ColorMixDemo::new(cx));
+                    let view = cx.new(|cx| ColorMixDemo::new(window, cx));
                     cx.new(|cx| Root::new(view, window, cx))
                 },
             )

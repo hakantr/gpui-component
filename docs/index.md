@@ -29,8 +29,8 @@ GPUI and GPUI Component are under active development, recently GPUI have some ne
 The documentation on this site are based on the **Git main branch**, if you use the crates.io version, there may be some differences.
 
 ```toml
-gpui = { git = "https://github.com/zed-industries/zed" }
-gpui_platform = { git = "https://github.com/zed-industries/zed", features = ["font-kit"] }
+gpui = { git = "https://github.com/zed-industries/zed", rev = "e4e656fb42a01cd8db7aea53c48ae0f38377db57" }
+gpui_platform = { git = "https://github.com/zed-industries/zed", rev = "e4e656fb42a01cd8db7aea53c48ae0f38377db57" }
 gpui-component = { git = "https://github.com/longbridge/gpui-component" }
 ```
 
